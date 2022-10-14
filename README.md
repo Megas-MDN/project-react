@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Subindo uma aplicação React para o GitHub Pages
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Crie um repositório e suba a sua aplicação react para ele, seguindo os passos tradicionais.
 
-## Available Scripts
+``` git init ```
 
-In the project directory, you can run:
+```git add README.md```
 
-### `npm start`
+``git commit -m "first commit"``
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+````git branch -M main````
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+`git remote add origin https://github.com/{UserName}/{repoName}.git
+`
 
-### `npm test`
+```git push -u origin main```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Depois de subir o seu repositório
 
-### `npm run build`
+Digite no terminal. (~estando na pasta do projeto~)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+``$ npm install gh-pages --save-dev``
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Abra o arquivo package.json
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+E cole a linha abaixo nas primeiras linhas (~depois da chave "version" e antes da chave "dependencies"~)
 
-### `npm run eject`
+``"homepage": "https://{username}.github.io/{nome-do-repositorio}",``
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+substitua '{username}' pelo seu usuário do github e '{nome-do-repositorio}' pelo nome do repositório.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+Exemplo:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+ "homepage": "https://Megas-MDN.github.io/project-react",
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
 
-## Learn More
+## Ainda no package.json
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Vá até a chave "scripts" e dentro dela acrescente as chaves:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
 
-### Code Splitting
+```
+Exemplo: 
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    ...
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+},
+```
 
-### Analyzing the Bundle Size
+## Depois das alterações faça a atualização do repositório
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+git add .
+git commit -m "Realizando as modificações para gh-pages"
+git push
+```
 
-### Making a Progressive Web App
+## Faça o deploy
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Por fim rode no terminal o seguinte comando:
 
-### Advanced Configuration
+``$ npm run deploy``
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Entre no github pages e verifique sua aplicação
 
-### Deployment
+```shell
+https://{userName}.github.io/{repoName}/
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Exemplo: 
 
-### `npm run build` fails to minify
+    https://megas-mdn.github.io/project-react/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Referências
+
+1. [ Repositório Original (em inglês) ](https://github.com/gitname/react-gh-pages)
+2. [ `create-react-app` guia oficial de Deploy](https://create-react-app.dev/docs/deployment/#github-pages)
+
+
